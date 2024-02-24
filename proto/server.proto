@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package proto;
+option go_package = ".;proto";
+//todo: 登录
+message UserLoginReq {
+  string Username = 1;
+  string Password = 2;
+}
+message UserLoginRes {
+  int64  Userid = 1;
+}
+//todo: esIK分词器索引
+message EsIkIndexReq {
+  string Index = 1;
+}
+message EsIkIndexRes {
+
+}
+//todo: 无限极评论
+message ReviewReq {
+
+}
+message ReviewRes {
+  bytes Data = 1;
+}
+//todo: es添加
+message EsAddReq {
+  string Index = 1;
+  string Name = 2;
+  string Title = 3;
+  string Comment = 4;
+}
+message EsAddRes {
+
+}
+//todo: es查询
+message EsShowReq {
+  string Index = 1;
+  string Word = 2;
+  int64 Page = 3;
+  int64 Size = 4;
+}
+message EsShowRes {
+bytes Data = 1;
+}
+
+
+service ServerRpc {
+  //todo: 登录
+  rpc UserLogin (UserLoginReq)returns(UserLoginRes);
+  //todo: esIK分词器索引
+  rpc EsIkIndex (EsIkIndexReq)returns(EsIkIndexRes);
+  //todo: 无限极评论
+  rpc Review (ReviewReq)returns(ReviewRes);
+  //todo: es添加
+  rpc EsAdd (EsAddReq)returns(EsAddRes);
+  //todo: es查询
+  rpc EsShow (EsShowReq)returns(EsShowRes);
+}
